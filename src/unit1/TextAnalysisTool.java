@@ -59,10 +59,13 @@ public class TextAnalysisTool {
      * String analysis should be carried on
      */
     private static String requestInput(){
-        System.out.println("Please enter the text below: ");
-        Scanner scanner = new Scanner(System.in);
-        String text = scanner.nextLine();
-        if (text.isBlank()) requestInput();
+        String text;
+        do {
+            System.out.println("Please enter the text below: ");
+            Scanner scanner = new Scanner(System.in);
+            text = scanner.nextLine();
+        } while (text.isBlank());
+
         return text;
     }
 
@@ -120,9 +123,15 @@ public class TextAnalysisTool {
      * @param text user inputted text, analysis should be carried on.
      */
     private static void characterFrequency(String text){
-        System.out.println("Input the character you wish to know the frequency of: ");
-        Scanner scanner = new Scanner(System.in);
-        String input =  scanner.nextLine();
+        String input;
+
+        do {
+            System.out.println("Input the character you wish to know the frequency of: ");
+            Scanner scanner = new Scanner(System.in);
+            input = scanner.nextLine();
+        }
+        while (input.isBlank());
+
         String character = input.split("")[0];
         int frequency = 0;
         for (var c : text.split("")){
@@ -140,9 +149,14 @@ public class TextAnalysisTool {
      * @param text user inputted text, analysis should be carried on.
      */
     private static void wordFrequency(String text){
-        System.out.println("Input the word you wish to know the frequency of: ");
-        Scanner scanner = new Scanner(System.in);
-        String word =  scanner.nextLine().strip().split(" ")[0];
+        String word;
+        do {
+            System.out.println("Input the word you wish to know the frequency of: ");
+            Scanner scanner = new Scanner(System.in);
+            word =  scanner.nextLine();
+        } while (word.isBlank());
+
+        word = word.strip().split(" ")[0];
         int frequency = 0;
         for (var w : text.split("[\\s.,;:]+")){
             if (w.equalsIgnoreCase(word)){
@@ -176,9 +190,9 @@ public class TextAnalysisTool {
                 uniqueWordsList.add(key);
             }
         }
-        System.out.println(uniqueWordsList);
-        System.out.println("Looking up unique words...");
-        System.out.print("Number of unique words: " + frequency);
+        System.out.println("Looking up unique word(s)...");
+        System.out.println("Number of unique word(s): " + frequency);
+        System.out.println("List of unique word(s): ");
         uniqueWordsList.forEach(System.out::println);
     }
 }
