@@ -366,7 +366,7 @@ public class Main {
         System.out.println("Enter the ID of the order you would like " +
                 "to change the status of:");
         try {
-            int ID = scanner.nextInt();
+            int ID = Integer.parseInt(scanner.nextLine());
             if (ID > Order.getOrderHistory().size() || ID <= 0) {
                 System.out.println("Order with that ID is not available");
                 return true;
@@ -375,7 +375,7 @@ public class Main {
             System.out.println("Enter the status of the order:");
             String status = scanner.nextLine();
             order.setOrderStatus(status);
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException | NumberFormatException e){
             System.out.println("Product ID must be a number");
         } catch (Exception e){
             System.out.println(e.getMessage());

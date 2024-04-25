@@ -15,12 +15,24 @@ import java.util.List;
  */
 public class Order {
 
-    public enum Status { PENDING, DELIVERED, CANCELLED};
-    private static  ArrayList<Order> orderHistory = new ArrayList<>();
+    /*
+     * Contains only valid order status's
+     */
+    public enum Status { PENDING, DELIVERED, CANCELLED}
+
+    /*
+     * Stores all orders in an ecommerce
+     * system.
+     */
+    private static final ArrayList<Order> orderHistory = new ArrayList<>();
+
+    /*
+     * Length of order for OrderId allocation.
+     */
     private static int length = 0;
     private final int orderId;
     private final Customer customer;
-    private final List<CartItem> products = new ArrayList<>();
+    private final List<CartItem> products;
     private final double total;
     private Status orderStatus;
     private final Date date;
@@ -31,10 +43,10 @@ public class Order {
      * @param customer {@code Customer}: a customer.
      * @param products {@code List(Customer)}: a customer.
      * @param total int: total amount.
-     * @param date Date: date of the order
      */
-    public Order(Customer customer, List<CartItem> products, double total, Date date){
+    public Order(Customer customer, List<CartItem> products, double total){
         this.orderId = ++length;
+        this.products = products;
         this.customer = customer;
         this.total = total;
         this.orderStatus = Status.PENDING;

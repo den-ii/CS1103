@@ -12,7 +12,15 @@ import java.util.List;
  * @author Deni Wisdom Ochiche
  */
 public class Product {
+    /*
+     * Stores all products in an ecommerce
+     * system.
+     */
     private static final ArrayList<Product> products = new ArrayList<>();
+    /*
+     * Keeps track of length for
+     * product ID allocation.
+     */
     private static int length = 0;
     private final int productID;
     private String name;

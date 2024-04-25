@@ -4,7 +4,6 @@ import unit2.com.ecommerce.orders.CartItem;
 import unit2.com.ecommerce.orders.Order;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,12 +17,24 @@ import java.util.List;
  */
 public class Customer {
 
-    private static ArrayList<Customer> customers = new ArrayList<>();
+    /*
+     * Stores all customers in an ecommerce
+     * system.
+     */
+    private static final ArrayList<Customer> customers = new ArrayList<>();
+
+    /*
+     * Keeps track of customers for ID allocation.
+     */
     private static int length = 0;
     private final int customerID;
     private String name;
     private String address = "";
     private String username;
+    /*
+     * Contains list of products added to customer's cart
+     * in an ecommerce system.
+     */
     private ArrayList<CartItem> shoppingCart = new ArrayList<>();
 
     /**
@@ -197,9 +208,7 @@ public class Customer {
             return;
         }
         double total = calculateTotal();
-        Order order = new Order(this, getShoppingCart(), total,
-                new Date());
-        order.addProducts(shoppingCart);
+        Order order = new Order(this, getShoppingCart(), total);
         Order.addOrderToHistory(order);
         order.orderSummary();
         System.out.println("You've been charged $" + total);
