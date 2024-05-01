@@ -1,3 +1,5 @@
+package unit2;
+
 import unit2.com.ecommerce.Customer;
 import unit2.com.ecommerce.Product;
 import unit2.com.ecommerce.orders.Order;
@@ -6,7 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Main class - runs the ecommerce package.
+ * unit2.Main class - runs the ecommerce package.
  *
  * @author Deni Wisdom Ohiche
  */
