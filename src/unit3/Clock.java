@@ -47,7 +47,7 @@ public class Clock {
 
         Clock clock = new Clock();
 
-        Thread t1 = new Thread(() -> {
+        Thread setter = new Thread(() -> {
             while (true){
                 try{
                     TimeUnit.MILLISECONDS.sleep(1000);
@@ -58,7 +58,7 @@ public class Clock {
             }
         });
 
-        Thread t2 = new Thread(() -> {
+        Thread printer = new Thread(() -> {
             while (true){
                 try{
                     TimeUnit.MILLISECONDS.sleep(1000);
@@ -69,9 +69,9 @@ public class Clock {
             }
         });
 
-        t1.setPriority(5);
-        t2.setPriority(4);
-        t1.start();
-        t2.start();
+        setter.setPriority(5);
+        printer.setPriority(4);
+        setter.start();
+        printer.start();
     }
 }
