@@ -3,29 +3,51 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+/**
+ * ChatServer Class
+ * Receives and sends out messages to ChatClients
+ * @author Deni Wisdom Ochiche
+ */
 public class ChatServer {
-    // List to keep track of all connected clients
+    /*
+     * List to keep track of all connected clients
+     */
     private static HashMap<String, ClientHandler> clients = new HashMap<>();
 
+    /*
+     * keep track of all generated id's
+     */
     private static HashMap<String, Boolean> idsList = new HashMap<>();
 
-    public static void main(String[] args) throws IOException {
+    /**
+     * Entry point to the program
+     * @param args cmd-line args
+     */
+    public static void main(String[] args) {
         int port = 4440;
-        ServerSocket serverSocket = new ServerSocket(port);
-        System.out.printf("Server started on port %d. Waiting for clients...%n", port);
+        try (ServerSocket serverSocket = new ServerSocket(port)){
+            System.out.printf("Server started on port %d. Waiting for clients...%n", port);
 
-        while (true) {
-            Socket clientSocket = serverSocket.accept();
-            System.out.println("Client connected: " + clientSocket);
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                System.out.println("Client connected: " + clientSocket);
 
-            // Spawn a new thread for each client
-            String id = generateIds();
-            ClientHandler clientThread = new ClientHandler(clientSocket, clients, id);
-            clients.put(id, clientThread);
-            new Thread(clientThread).start();
+                // Spawn a new thread for each client
+                String id = generateIds();
+                ClientHandler clientThread = new ClientHandler(clientSocket, clients, id);
+                clients.put(id, clientThread);
+                new Thread(clientThread).start();
+             }
+        } catch (IOException e){
+            System.err.println(e.getMessage());
         }
     }
 
+    /**
+     * Helper method - generates id for connected
+     * clients
+     * @return id
+     */
     private static String generateIds(){
         Random random = new Random();
         String id = Integer.toString(random.nextInt(200));
@@ -35,6 +57,11 @@ public class ChatServer {
     }
 }
 
+/**
+ * ClientHandler Class
+ * Thread to keep track of a Client's socket(address)
+ * @author Deni Wisdom Ochiche
+ */
 class ClientHandler implements Runnable {
     private Socket clientSocket;
     private  HashMap<String, ClientHandler> clients;

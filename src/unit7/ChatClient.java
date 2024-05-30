@@ -3,12 +3,22 @@ package unit7;
 import java.io.*;
 import java.net.*;
 
+/**
+ * ChatClient Class
+ * Acts as an interface, receives and sends out messages
+ * @author Deni Wisdom Ochiche
+ */
 public class ChatClient {
     private Socket socket = null;
     private BufferedReader inputConsole = null;
     private PrintWriter out = null;
     private BufferedReader in = null;
 
+    /**
+     * ChatClient Constructor
+     * @param address address of server
+     * @param port port server runs on
+     */
     public ChatClient(String address, int port) {
         try {
             socket = new Socket(address, port);
@@ -58,6 +68,10 @@ public class ChatClient {
         }
     }
 
+    /**
+     * Entry point to our program
+     * @param args cmd-line args
+     */
     public static void main(String[] args) {
         ChatClient client = new ChatClient("127.0.0.1", 4440);
     }
