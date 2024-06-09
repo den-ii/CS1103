@@ -4,3 +4,7 @@
 ***Unit 1 - Exception Handling and String Handling: `Text Analysis`*** <br/>
 ***Unit 2 - Packages in Java: `Ecommerce`*** <br/>
 ***Unit 3 - Multithreading: `Clock`*** <br/>
+***Unit 6 - Generics: `Library`*** <br/>
+***Unit 3 - Sockets: `Simple Chat App`*** <br/>
+
+
